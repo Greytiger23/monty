@@ -2,52 +2,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define STACK_SIZE 100
-int x = -1;
-int s[STACK_SIZE];
 /**
  * main - entry point
+ * @ac: number of arguments
+ * @av: list of arguments
  * Return: void
  */
-int main(void)
+int main(int ac, char **av)
 {
-push(10);
-push(20);
-push(30);
-pall();
-return (0);
-}
-/**
- * push - push function
- * @a: integer
- * Return: void
- */
-void push(int a)
+const char *a;
+a = av[1];
+(void)av;
+if (ac != 2)
 {
-int x = -1;
-if (x == STACK_SIZE - 1)
-{
-fprintf(stderr, "L%d: usage: push integer\n", __LINE__);
+fprintf(stderr, "USAGE: monty file\n");
 exit(EXIT_FAILURE);
 }
-else
-{
-s[x++] = a;
-}
-}
-/**
- * pall - pall function
- * Return: void
- */
-void pall(void)
-{
-int a;
-if (x == -1)
-{
-return;
-}
-for (a = x; a >= 0; a--)
-{
-printf("%d\n", a);
-}
+pro(a);
+return (0);
 }
