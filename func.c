@@ -9,33 +9,36 @@ int s[STACK_SIZE];
  * @a: integer
  * Return: void
  */
-void push(int a)
+void push(stack_t **y, int a, unsigned int i)
 {
-int x = -1;
-if (x == STACK_SIZE - 1)
+stack_t *x = malloc(sizeof(stack_t));
+if (!x)
 {
 fprintf(stderr, "L%d: usage: push integer\n", __LINE__);
 exit(EXIT_FAILURE);
 }
-else
+x->n = a;
+x->prev = NULL;
+x->next = *y;
+if (*y)
 {
-s[x++] = a;
+(*y)->prev = x;
 }
+*y = x;
 }
 /**
  * pall - pall function
+ * @y: stack list
+ * @a: integer
  * Return: void
  */
-void pall(void)
+void pall(stack_t **y, unsigned int a)
 {
-int a;
-if (x == -1)
+stack_t *b = *y;
+while (b)
 {
-return;
-}
-for (a = x; a >= 0; a--)
-{
-printf("%d\n", a);
+printf("%d\n", b->n);
+b = b->next;
 }
 }
 /**
