@@ -30,8 +30,8 @@ typedef struct instruction_s
 char *opcode;
 void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-void push(int a);
-void pall(void);
+void push(stack_t **y, int a, unsigned int i);
+void pall(stack_t **y, unsigned int a);
 void pint(void);
 void pro(const char *f);
 int main(int ac, char **av);
