@@ -3,8 +3,8 @@
 #include <stdlib.h>
 
 #define STACK_SIZE 100
+int x = -1;
 int s[STACK_SIZE];
-int n;
 /**
  * main - entry point
  * Return: void
@@ -24,12 +24,16 @@ return (0);
  */
 void push(int a)
 {
-if (n == -1)
+int x = -1;
+if (x == STACK_SIZE - 1)
 {
 fprintf(stderr, "L%d: usage: push integer\n", __LINE__);
 exit(EXIT_FAILURE);
 }
-s[n++] = a;
+else
+{
+s[x++] = a;
+}
 }
 /**
  * pall - pall function
@@ -38,11 +42,11 @@ s[n++] = a;
 void pall(void)
 {
 int a;
-if (n == -1)
+if (x == -1)
 {
 return;
 }
-for (a = n; a >= 0; a--)
+for (a = x; a >= 0; a--)
 {
 printf("%d\n", a);
 }

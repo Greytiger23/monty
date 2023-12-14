@@ -1,6 +1,7 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define STACK_SIZE 100
 /**
 * struct stack_s - doubly linked list representation of a stack (or queue)
 * @n: integer
@@ -31,4 +32,6 @@ void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 void push(int a);
 void pall(void);
+extern int s[STACK_SIZE];
+extern int x;
 #endif
