@@ -11,8 +11,8 @@
  */
 void push(stack_t **y, int a, unsigned int i)
 {
-(void)i;
 stack_t *x = malloc(sizeof(stack_t));
+(void)i;
 if (!x)
 {
 fprintf(stderr, "L%d: usage: push integer\n", __LINE__);
@@ -35,8 +35,8 @@ if (*y)
  */
 void pall(stack_t **y, unsigned int a)
 {
-(void)a;
 stack_t *b = *y;
+(void)a;
 while (b)
 {
 printf("%d\n", b->n);
@@ -64,12 +64,12 @@ printf("%d\n", s[x]);
  */
 void pop(stack_t **y, unsigned int a)
 {
+stack_t *b = *y;
 if (!*y)
 {
-fprintf(stderr, "L%d: can't pop an empty stack\n", __LINE__);
+fprintf(stderr, "L%d: can't pop an empty stack\n", a);
 exit(EXIT_FAILURE);
 }
-stack_t *b = *y;
 *y = (*y)->next;
 if (*y)
 {

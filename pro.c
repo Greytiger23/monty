@@ -14,6 +14,7 @@ char b[256];
 int i = 0;
 instruction_t x;
 stack_t *y = NULL;
+stack_t *t = y;
 FILE *a = fopen(f, "r");
 if (a == NULL)
 {
@@ -28,7 +29,6 @@ exe(x, &y, i);
 fclose(a);
 while (y)
 {
-stack_t *t = y;
 y = y->next;
 free(t);
 }
@@ -37,14 +37,14 @@ free(t);
  * add - add function
  * Return: void
  */
-void add(void)
+void add(stack_t **y, unsigned int a)
 {
-if (x < 1)
+if (!*y)
 {
-fprintf(stderr, "L%d: can't add, stack too short\n", __LINE__);
+fprintf(stderr, "L%d: can't add, stack too short\n", a);
 exit(EXIT_FAILURE);
 }
-s[x - 1] += s[x];
+(*y)->n = y;
 }
 /**
  * exe - execute instructions function
@@ -55,7 +55,7 @@ s[x - 1] += s[x];
  */
 void exe(instruction_t a, stack_t **y, unsigned int b)
 {
-int t;
+int t = strlen(a.opcode);
 if (strncmp(a.opcode, "push", 4) == 0)
 {
 push(y, t, b);
@@ -82,7 +82,7 @@ add();
 }
 else if (strcmp(a.opcode, "nop") == 0)
 {
-continue;
+return;
 }
 else
 {
