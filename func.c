@@ -2,15 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int x = -1;
-int s[STACK_SIZE];
 /**
  * push - push function
+ * @y: stack list
  * @a: integer
+ * @i: integer
  * Return: void
  */
 void push(stack_t **y, int a, unsigned int i)
 {
+(void)i;
 stack_t *x = malloc(sizeof(stack_t));
 if (!x)
 {
@@ -34,6 +35,7 @@ if (*y)
  */
 void pall(stack_t **y, unsigned int a)
 {
+(void)a;
 stack_t *b = *y;
 while (b)
 {
@@ -56,16 +58,24 @@ printf("%d\n", s[x]);
 }
 /**
  * pop - pop function
+ * @y: stack
+ * @a: integer
  * Return: void
  */
-void pop(void)
+void pop(stack_t **y, unsigned int a)
 {
-if (x == -1)
+if (!*y)
 {
 fprintf(stderr, "L%d: can't pop an empty stack\n", __LINE__);
 exit(EXIT_FAILURE);
 }
-x--;
+stack_t *b = *y;
+*y = (*y)->next;
+if (*y)
+{
+(*y)->prev = NULL;
+}
+free(b);
 }
 /**
  * swap - swap function

@@ -11,8 +11,9 @@
 void pro(const char *f)
 {
 char b[256];
-int i = 0, t;
-size_t x;
+int i = 0;
+instruction_t x;
+stack_t *y = NULL;
 FILE *a = fopen(f, "r");
 if (a == NULL)
 {
@@ -22,47 +23,15 @@ exit(EXIT_FAILURE);
 while (fgets(b, sizeof(b), a) != NULL)
 {
 i++;
-x = strlen(b);
-if (x > 0 && b[x - 1] == '\n')
-{
-b[x - 1] = '\0';
-}
-if (strncmp(b, "push", 4) == 0)
-{
-t = atoi(b + 5);
-push(t);
-}
-else if (strcmp(b, "pall") == 0)
-{
-pall();
-}
-else if (strcmp(b, "pint") == 0)
-{
-pint();
-}
-else if (strcmp(b, "pop") == 0)
-{
-pop();
-}
-else if (strcmp(b, "swap") == 0)
-{
-swap();
-}
-else if (strcmp(b, "add") == 0)
-{
-add();
-}
-else if (strcmp(b, "nop") == 0)
-{
-continue;
-}
-else
-{
-fprintf(stderr, "L%d: unknown instruction %s\n", i, b);
-exit(EXIT_FAILURE);
-}
+exe(x, &y, i);
 }
 fclose(a);
+while (y)
+{
+stack_t *t = y;
+y = y->next;
+free(t);
+}
 }
 /**
  * add - add function
@@ -76,5 +45,48 @@ fprintf(stderr, "L%d: can't add, stack too short\n", __LINE__);
 exit(EXIT_FAILURE);
 }
 s[x - 1] += s[x];
-pop();
+}
+/**
+ * exe - execute instructions function
+ * @a: list of instructions
+ * @y: stack
+ * @b: integer
+ * Return: void
+ */
+void exe(instruction_t a, stack_t **y, unsigned int b)
+{
+int t;
+if (strncmp(a.opcode, "push", 4) == 0)
+{
+push(y, t, b);
+}
+else if (strcmp(a.opcode, "pall") == 0)
+{
+pall(y, b);
+}
+else if (strcmp(a.opcode, "pint") == 0)
+{
+pint();
+}
+else if (strcmp(a.opcode, "pop") == 0)
+{
+pop(y, b);
+}
+else if (strcmp(a.opcode, "swap") == 0)
+{
+swap();
+}
+else if (strcmp(a.opcode, "add") == 0)
+{
+add();
+}
+else if (strcmp(a.opcode, "nop") == 0)
+{
+continue;
+}
+else
+{
+fprintf(stderr, "L%d: unknown instruction %s\n", b, a.opcode);
+exit(EXIT_FAILURE);
+}
 }

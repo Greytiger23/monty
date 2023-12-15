@@ -35,9 +35,10 @@ void pall(stack_t **y, unsigned int a);
 void pint(void);
 void pro(const char *f);
 int main(int ac, char **av);
-void pop(void);
+void pop(stack_t **y, unsigned int a);
 void swap(void);
 void add(void);
+void exe(instruction_t a, stack_t **y, unsigned int b);
 extern int s[STACK_SIZE];
 extern int x;
 #endif
