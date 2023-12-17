@@ -35,16 +35,19 @@ free(t);
 }
 /**
  * add - add function
+ * @y: stack list
+ * @a: integer
  * Return: void
  */
 void add(stack_t **y, unsigned int a)
 {
-if (!*y)
+if (!*y || !(*y)->next)
 {
 fprintf(stderr, "L%d: can't add, stack too short\n", a);
 exit(EXIT_FAILURE);
 }
-(*y)->n = y;
+(*y)->next->n += (*y)->n;
+pop(y, a);
 }
 /**
  * exe - execute instructions function
@@ -66,7 +69,7 @@ pall(y, b);
 }
 else if (strcmp(a.opcode, "pint") == 0)
 {
-pint();
+pint(y, b);
 }
 else if (strcmp(a.opcode, "pop") == 0)
 {
@@ -74,11 +77,11 @@ pop(y, b);
 }
 else if (strcmp(a.opcode, "swap") == 0)
 {
-swap();
+swap(y, b);
 }
 else if (strcmp(a.opcode, "add") == 0)
 {
-add();
+add(y, b);
 }
 else if (strcmp(a.opcode, "nop") == 0)
 {

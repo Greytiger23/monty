@@ -18,6 +18,9 @@ if (ac != 2)
 fprintf(stderr, "USAGE: monty file\n");
 exit(EXIT_FAILURE);
 }
+else
+{
 pro(a);
+}
 return (0);
 }

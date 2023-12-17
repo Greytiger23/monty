@@ -45,16 +45,18 @@ b = b->next;
 }
 /**
  * pint - pint function
+ * @y: stack list
+ * @a: integer
  * Return: void
  */
-void pint(void)
+void pint(stack_t **y, unsigned int a)
 {
-if (x == -1)
+if (!*y)
 {
-fprintf(stderr, "L%d: can't pint, stack empty\n", __LINE__);
+fprintf(stderr, "L%d: can't pint, stack empty\n", a);
 exit(EXIT_FAILURE);
 }
-printf("%d\n", s[x]);
+printf("%d\n", (*y)->n);
 }
 /**
  * pop - pop function
@@ -79,17 +81,25 @@ free(b);
 }
 /**
  * swap - swap function
+ * @y: stack
+ * @a: integer
  * Return: void
  */
-void swap(void)
+void swap(stack_t **y, unsigned int a)
 {
-int a;
-if (x < 1)
+stack_t *b = (*y)->next;
+if (!*y || !(*y)->next)
 {
-fprintf(stderr, "L%d: can't swap, stack too short\n", __LINE__);
+fprintf(stderr, "L%d: can't swap, stack too short\n", a);
 exit(EXIT_FAILURE);
 }
-a = s[x];
-s[x] = s[x - 1];
-s[x - 1] = a;
+(*y)->next = b->next;
+b->prev = (*y)->prev;
+if ((*y)->next)
+{
+(*y)->next->prev = *y;
+}
+(*y)->prev = b;
+b->next = *y;
+*y = b;
 }
