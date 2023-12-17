@@ -59,10 +59,10 @@ pop(y, a);
 void exe(instruction_t a, stack_t **y, unsigned int b)
 {
 int t;
-if (strcmp(a.opcode, "push") == 0)
+if (strncmp(a.opcode, "push", 4) == 0)
 {
 t = atoi(a.opcode);
-push(y, t, b);
+_push(y, t, b);
 }
 else if (strcmp(a.opcode, "pall") == 0)
 {
@@ -93,4 +93,61 @@ else
 fprintf(stderr, "L%d: unknown instruction %s\n", b, a.opcode);
 exit(EXIT_FAILURE);
 }
+}
+/**
+ * p - finc the pointer function
+ * @a: instructions
+ * @b: integer
+ * Return: void
+ */
+void p(instruction_t a, unsigned int b)
+{
+if (strcmp(a.opcode, "push") == 0)
+{
+a.f = push;
+}
+else if (strcmp(a.opcode, "pall") == 0)
+{
+a.f = pall;
+}
+else if (strcmp(a.opcode, "pint") == 0)
+{
+a.f = pint;
+}
+else if (strcmp(a.opcode, "pop") == 0)
+{
+a.f = pop;
+}
+else if (strcmp(a.opcode, "swap") == 0)
+{
+a.f = swap;
+}
+else if (strcmp(a.opcode, "add") == 0)
+{
+a.f = add;
+}
+else if (strcmp(a.opcode, "nop") == 0)
+{
+return;
+}
+else
+{
+fprintf(stderr, "L%u: unknown instruction %s\n", b, a.opcode);
+exit(EXIT_FAILURE);
+}
+}
+/**
+ * _strdup - function
+ * @a: char
+ * Return: void
+ */
+char *_strdup(const char *a)
+{
+size_t b = strlen(a) + 1;
+char *c = malloc(b);
+if (c)
+{
+memcpy(c, a, b);
+}
+return (c);
 }

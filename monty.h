@@ -30,7 +30,7 @@ typedef struct instruction_s
 char *opcode;
 void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-void push(stack_t **y, int a, unsigned int i);
+void _push(stack_t **y, int a, unsigned int i);
 void pall(stack_t **y, unsigned int a);
 void pint(stack_t **y, unsigned int a);
 void pro(const char *f);
@@ -39,6 +39,6 @@ void pop(stack_t **y, unsigned int a);
 void swap(stack_t **y, unsigned int a);
 void add(stack_t **y, unsigned int a);
 void exe(instruction_t a, stack_t **y, unsigned int b);
-extern int s[STACK_SIZE];
-extern int x;
+void p(instruction_t a, unsigned int b);
+char *_strdup(const char *a);
 #endif
