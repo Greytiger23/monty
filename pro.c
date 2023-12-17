@@ -62,7 +62,7 @@ int t;
 if (strncmp(a.opcode, "push", 4) == 0)
 {
 t = atoi(a.opcode);
-_push(y, t, b);
+push(y, t, b);
 }
 else if (strcmp(a.opcode, "pall") == 0)
 {
@@ -91,48 +91,6 @@ return;
 else
 {
 fprintf(stderr, "L%d: unknown instruction %s\n", b, a.opcode);
-exit(EXIT_FAILURE);
-}
-}
-/**
- * p - finc the pointer function
- * @a: instructions
- * @b: integer
- * Return: void
- */
-void p(instruction_t a, unsigned int b)
-{
-if (strcmp(a.opcode, "push") == 0)
-{
-a.f = push;
-}
-else if (strcmp(a.opcode, "pall") == 0)
-{
-a.f = pall;
-}
-else if (strcmp(a.opcode, "pint") == 0)
-{
-a.f = pint;
-}
-else if (strcmp(a.opcode, "pop") == 0)
-{
-a.f = pop;
-}
-else if (strcmp(a.opcode, "swap") == 0)
-{
-a.f = swap;
-}
-else if (strcmp(a.opcode, "add") == 0)
-{
-a.f = add;
-}
-else if (strcmp(a.opcode, "nop") == 0)
-{
-return;
-}
-else
-{
-fprintf(stderr, "L%u: unknown instruction %s\n", b, a.opcode);
 exit(EXIT_FAILURE);
 }
 }

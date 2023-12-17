@@ -3,13 +3,13 @@
 #include <stdlib.h>
 
 /**
- * _push - push function
+ * push - push function
  * @y: stack list
  * @a: integer
  * @i: integer
  * Return: void
  */
-void _push(stack_t **y, int a, unsigned int i)
+void push(stack_t **y, int a, unsigned int i)
 {
 stack_t *x = malloc(sizeof(stack_t));
 (void)i;

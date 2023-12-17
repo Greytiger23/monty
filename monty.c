@@ -36,15 +36,6 @@ if (token == NULL || token[0] == '#')
 continue;
 }
 x.opcode = _strdup(token);
-if (strcmp(x.opcode, "push") == 0)
-{
-x.f = push;
-}
-else if (strcmp(x.opcode, "pall") == 0)
-{
-x.f = pall;
-}
-p(x, i);
 exe(x, &y, i);
 free(x.opcode);
 }
