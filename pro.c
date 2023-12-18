@@ -58,11 +58,9 @@ pop(y, a);
  */
 void exe(instruction_t a, stack_t **y, unsigned int b)
 {
-char *t;
-if (strncmp(a.opcode, "push", 6) == 0)
+if (strcmp(a.opcode, "push") == 0)
 {
-t = a.opcode;
-push(y, b, t);
+push(y, b, a.opcode);
 }
 else if (strcmp(a.opcode, "pall") == 0)
 {

@@ -32,12 +32,11 @@ while (fgets(b, sizeof(b), a) != NULL)
 {
 i++;
 token = strtok(b, " \t\n");
-if (token == NULL)
+if (token != NULL)
 {
-continue;
-}
 x.opcode = _strdup(token);
 exe(x, &y, i);
+}
 }
 fclose(a);
 while (y)
