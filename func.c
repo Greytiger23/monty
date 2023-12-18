@@ -43,11 +43,7 @@ if (*y)
 void pall(stack_t **y, unsigned int a)
 {
 stack_t *b = *y;
-if (*y == NULL)
-{
-printf("\n");
-printf("stack is empty %d\n", a);
-}
+(void)a;
 while (b)
 {
 printf("%d\n", b->n);
