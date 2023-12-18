@@ -34,7 +34,7 @@ i++;
 token = strtok(b, " \t\n");
 if (token != NULL)
 {
-x.opcode = _strdup(token);
+x.opcode = token;
 exe(x, &y, i);
 }
 }
