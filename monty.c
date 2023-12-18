@@ -14,7 +14,7 @@ int main(int ac, char **av)
 const char *c = av[1];
 char b[256];
 int i = 0;
-char *token = strtok(b, " \t\n");
+char *token;
 instruction_t x;
 stack_t *y = NULL;
 FILE *a = fopen(c, "r");
@@ -31,13 +31,13 @@ exit(EXIT_FAILURE);
 while (fgets(b, sizeof(b), a) != NULL)
 {
 i++;
-if (token == NULL || token[0] == '#')
+token = strtok(b, " \t\n");
+if (token == NULL)
 {
 continue;
 }
 x.opcode = _strdup(token);
 exe(x, &y, i);
-free(x.opcode);
 }
 fclose(a);
 while (y)

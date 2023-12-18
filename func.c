@@ -1,6 +1,7 @@
 #include "monty.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 /**
  * push - push function
@@ -9,16 +10,22 @@
  * @i: integer
  * Return: void
  */
-void push(stack_t **y, int a, unsigned int i)
+void push(stack_t **y, unsigned int i, char *a)
 {
 stack_t *x = malloc(sizeof(stack_t));
-(void)i;
-if (!x)
+int b;
+if (!a)
 {
-fprintf(stderr, "L%d: usage: push integer\n", __LINE__);
+fprintf(stderr, "L%d: usage: push integer\n", i);
 exit(EXIT_FAILURE);
 }
-x->n = a;
+b = atoi(a);
+if (!x)
+{
+fprintf(stderr, "Error: memory allocation\n");
+exit(EXIT_FAILURE);
+}
+x->n = b;
 x->prev = NULL;
 x->next = *y;
 if (*y)
@@ -36,7 +43,11 @@ if (*y)
 void pall(stack_t **y, unsigned int a)
 {
 stack_t *b = *y;
-(void)a;
+if (*y == NULL)
+{
+printf("\n");
+printf("stack is empty %d\n", a);
+}
 while (b)
 {
 printf("%d\n", b->n);

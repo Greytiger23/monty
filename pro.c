@@ -58,11 +58,11 @@ pop(y, a);
  */
 void exe(instruction_t a, stack_t **y, unsigned int b)
 {
-int t;
-if (strncmp(a.opcode, "push", 4) == 0)
+char *t;
+if (strncmp(a.opcode, "push", 6) == 0)
 {
-t = atoi(a.opcode);
-push(y, t, b);
+t = a.opcode;
+push(y, b, t);
 }
 else if (strcmp(a.opcode, "pall") == 0)
 {
